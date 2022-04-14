@@ -1,0 +1,102 @@
+---
+title: "Data_visualization"
+author: "Nyongesa"
+date: "3/14/2022"
+output: html_document
+---
+<!------->
+```{r}
+library(tidyverse)
+```
+
+```{r}
+data(mpg)
+glimpse(mpg)
+```
+
+
+```{r}
+View(mpg)
+table(mpg$manufacturer)
+```
+
+```{r}
+library(ggplot2)
+ggplot(data=mpg)+geom_point(mapping= aes(y=hwy,x=displ))
+```
+
+```{r}
+ggplot(data=mpg)+geom_point(mapping=aes(x=displ,y=hwy,color=class))
+```
+```{r}
+ggplot(data=mpg)+geom_point(mapping=aes(x=displ,y=hwy,size=class))
+```
+
+```{r}
+ggplot(data = mpg)+geom_point(mapping = aes(x=displ,y=hwy,alpha=class))
+```
+```{r}
+ggplot(data = mpg)+geom_point(mapping = aes(x=displ,y=hwy,shape=class))
+```
+
+```{r}
+ggplot(data = mpg)+geom_point(mapping = aes(x=displ,y=hwy,color="purple"))
+```
+```{r}
+ggplot(data = mpg)+geom_point(mapping = aes(x=displ,y=hwy,color="blue"))
+```
+<!geom_smooth()>
+```{r}
+ggplot(data = mpg)+geom_smooth(mapping = aes(x=displ,y=hwy))
+```
+
+```{r}
+ggplot(data = mpg)+geom_smooth(mapping = aes(x=displ,y=hwy,linetype=drv))
+```
+```{r}
+ggplot(data = mpg,mapping=aes(x=displ,y=hwy))+geom_smooth()+geom_point(mapping=aes(color=class))
+```
+```{r}
+ggplot(data = mpg)+geom_smooth(mapping = aes(x=displ,y=hwy,group=drv))
+```
+
+```{r}
+```
+
+
+```{r}
+ggplot(data = mpg)+geom_smooth(mapping = aes(x=displ,y=hwy,color=drv))
+```
+
+```{r}
+ggplot(data = mpg,mapping = aes(x=displ,y=hwy))+geom_point()+facet_wrap(~class,nrow=2)
+```
+
+```{r}
+ggplot(data = mpg,mapping = aes(x=displ,y=hwy))+geom_point()+facet_wrap(drv~class)
+```
+
+```{r}
+install.packages("gcookbook")
+```
+
+```{r}
+library(gcookbook)
+data=climate
+
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+climate_sub= climate%>%filter(Source=="Berkeley" & Year>=1900) %>% mutate(pos=Anomaly10y>=0)
+
+```
+
+```{r}
+ggplot(data=climate_sub,mapping=aes(x=Year,y=Anomaly10y,fill=pos))+geom_col()
+```
+
+
